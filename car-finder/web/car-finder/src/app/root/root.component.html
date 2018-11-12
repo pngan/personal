@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="query-region">
+    <div>
+      <select (change)="setMake($event)">
+        <option>Choose a Make</option>
+        <option *ngFor="let menu of makeMenu" [value]="menu.Value">
+          {{menu.Display}}
+        </option>
+      </select>
+    </div>
+    <div>
+      <select *ngIf="modelMenu !== null" (change)="setModel($event)">
+        <option>All Models</option>
+        <option *ngFor="let menu of modelMenu" [value]="menu.Value">
+          {{menu.Display}}
+        </option>
+      </select>
+    </div>
+    <div>
+      <select *ngIf="regionMenu !== null" (change)="setRegion($event)">
+        <option>All Regions</option>
+        <option *ngFor="let menu of regionMenu" [value]="menu.Value">
+          {{menu.Display}}
+        </option>
+      </select>
+    </div>
+    <button (click)="onPerformSearch()">Search</button>
+  </div>
+  <div class="result-region">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Photo</th>
+          <th>Price</th>
+          <th>Year</th>
+          <th>Mileage</th>
+          <th>Discount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-template let-car ngFor [ngForOf]="cars">
+        <tr>
+          <td><a href="{{car.itemLink}}">{{car.title}}</a> </td>
+          <td><a href="{{car.itemLink}}"> <img src='{{car.imageLink}}' height="42" width="42"></a> </td>
+          <td>{{car.price}}</td>
+          <td>{{car.title.split(' ', 1)}}</td>
+          <td>{{car.mileage}}</td>
+          <td>{{car.discount}}</td>
+        </tr>
+        </ng-template>
+
+      </tbody>
+    </table>
+    
+
+</div>

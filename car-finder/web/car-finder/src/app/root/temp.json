@@ -1,0 +1,357 @@
+interface FieldValue {
+    Value: string;
+    Display: string;
+}
+interface Menu {
+    FieldName: string;
+    FieldValues: FieldValue[];
+}
+
+
+[
+    {
+        "FieldName": "fueltype",
+        "FieldValues": []
+    },
+    {
+        "FieldName": "colour",
+        "FieldValues": []
+    },
+    {
+        "FieldName": "transmission",
+        "FieldValues": []
+    },
+    {
+        "FieldName": "location",
+        "FieldValues": []
+    },
+    {
+        "FieldName": "bodytype",
+        "FieldValues": []
+    },
+    {
+        "FieldName": "model",
+        "FieldValues": []
+    },
+    {
+        "FieldName": "make",
+        "FieldValues": [
+            {
+                "Value": "alfa+romeo",
+                "Display": "Alfa Romeo (24)"
+            },
+            {
+                "Value": "alvis",
+                "Display": "Alvis (1)"
+            },
+            {
+                "Value": "aston+martin",
+                "Display": "Aston Martin (20)"
+            },
+            {
+                "Value": "audi",
+                "Display": "Audi (783)"
+            },
+            {
+                "Value": "avon+standard",
+                "Display": "Avon Standard (1)"
+            },
+            {
+                "Value": "bentley",
+                "Display": "Bentley (24)"
+            },
+            {
+                "Value": "bmw",
+                "Display": "BMW (1240)"
+            },
+            {
+                "Value": "cadillac",
+                "Display": "Cadillac (13)"
+            },
+            {
+                "Value": "chery",
+                "Display": "Chery (8)"
+            },
+            {
+                "Value": "chevrolet",
+                "Display": "Chevrolet (83)"
+            },
+            {
+                "Value": "chrysler",
+                "Display": "Chrysler (56)"
+            },
+            {
+                "Value": "citroen",
+                "Display": "Citroen (55)"
+            },
+            {
+                "Value": "daewoo",
+                "Display": "Daewoo (3)"
+            },
+            {
+                "Value": "daihatsu",
+                "Display": "Daihatsu (33)"
+            },
+            {
+                "Value": "daimler",
+                "Display": "Daimler (1)"
+            },
+            {
+                "Value": "delorean",
+                "Display": "Delorean (1)"
+            },
+            {
+                "Value": "dodge",
+                "Display": "Dodge (116)"
+            },
+            {
+                "Value": "ferrari",
+                "Display": "Ferrari (24)"
+            },
+            {
+                "Value": "fiat",
+                "Display": "Fiat (25)"
+            },
+            {
+                "Value": "ford",
+                "Display": "Ford (1924)"
+            },
+            {
+                "Value": "foton",
+                "Display": "Foton (37)"
+            },
+            {
+                "Value": "gmc",
+                "Display": "GMC (5)"
+            },
+            {
+                "Value": "great+wall",
+                "Display": "Great Wall (51)"
+            },
+            {
+                "Value": "haval",
+                "Display": "Haval (54)"
+            },
+            {
+                "Value": "hino",
+                "Display": "Hino (13)"
+            },
+            {
+                "Value": "holden",
+                "Display": "Holden (1675)"
+            },
+            {
+                "Value": "honda",
+                "Display": "Honda (1523)"
+            },
+            {
+                "Value": "hsv",
+                "Display": "HSV (29)"
+            },
+            {
+                "Value": "hummer",
+                "Display": "Hummer (6)"
+            },
+            {
+                "Value": "hyundai",
+                "Display": "Hyundai (871)"
+            },
+            {
+                "Value": "infiniti",
+                "Display": "Infiniti (11)"
+            },
+            {
+                "Value": "international",
+                "Display": "International (2)"
+            },
+            {
+                "Value": "invicta",
+                "Display": "Invicta (1)"
+            },
+            {
+                "Value": "isuzu",
+                "Display": "Isuzu (256)"
+            },
+            {
+                "Value": "jaguar",
+                "Display": "Jaguar (153)"
+            },
+            {
+                "Value": "jeep",
+                "Display": "Jeep (339)"
+            },
+            {
+                "Value": "kia",
+                "Display": "Kia (694)"
+            },
+            {
+                "Value": "lamborghini",
+                "Display": "Lamborghini (18)"
+            },
+            {
+                "Value": "lancia",
+                "Display": "Lancia (1)"
+            },
+            {
+                "Value": "land+rover",
+                "Display": "Land Rover (224)"
+            },
+            {
+                "Value": "ldv",
+                "Display": "LDV (46)"
+            },
+            {
+                "Value": "lexus",
+                "Display": "Lexus (165)"
+            },
+            {
+                "Value": "lotus",
+                "Display": "Lotus (2)"
+            },
+            {
+                "Value": "mahindra",
+                "Display": "Mahindra (9)"
+            },
+            {
+                "Value": "maserati",
+                "Display": "Maserati (16)"
+            },
+            {
+                "Value": "maybach",
+                "Display": "Maybach (1)"
+            },
+            {
+                "Value": "mazda",
+                "Display": "Mazda (3371)"
+            },
+            {
+                "Value": "mclaren",
+                "Display": "Mclaren (10)"
+            },
+            {
+                "Value": "mercedes-benz",
+                "Display": "Mercedes-Benz (929)"
+            },
+            {
+                "Value": "mg",
+                "Display": "MG (4)"
+            },
+            {
+                "Value": "mini",
+                "Display": "Mini (135)"
+            },
+            {
+                "Value": "mitsubishi",
+                "Display": "Mitsubishi (1499)"
+            },
+            {
+                "Value": "morris",
+                "Display": "Morris (1)"
+            },
+            {
+                "Value": "nash",
+                "Display": "Nash (2)"
+            },
+            {
+                "Value": "nissan",
+                "Display": "Nissan (4062)"
+            },
+            {
+                "Value": "oldsmobile",
+                "Display": "Oldsmobile (2)"
+            },
+            {
+                "Value": "opel",
+                "Display": "Opel (6)"
+            },
+            {
+                "Value": "packard",
+                "Display": "Packard (3)"
+            },
+            {
+                "Value": "peugeot",
+                "Display": "Peugeot (224)"
+            },
+            {
+                "Value": "pontiac",
+                "Display": "Pontiac (3)"
+            },
+            {
+                "Value": "porsche",
+                "Display": "Porsche (115)"
+            },
+            {
+                "Value": "range+rover",
+                "Display": "Range Rover (4)"
+            },
+            {
+                "Value": "renault",
+                "Display": "Renault (48)"
+            },
+            {
+                "Value": "rolls-royce",
+                "Display": "Rolls-Royce (4)"
+            },
+            {
+                "Value": "rover",
+                "Display": "Rover (2)"
+            },
+            {
+                "Value": "saab",
+                "Display": "Saab (1)"
+            },
+            {
+                "Value": "skoda",
+                "Display": "Skoda (184)"
+            },
+            {
+                "Value": "smart",
+                "Display": "Smart (4)"
+            },
+            {
+                "Value": "ssangyong",
+                "Display": "Ssangyong (205)"
+            },
+            {
+                "Value": "stewart",
+                "Display": "Stewart (1)"
+            },
+            {
+                "Value": "subaru",
+                "Display": "Subaru (1599)"
+            },
+            {
+                "Value": "sunbeam",
+                "Display": "Sunbeam (1)"
+            },
+            {
+                "Value": "suzuki",
+                "Display": "Suzuki (1108)"
+            },
+            {
+                "Value": "swallow",
+                "Display": "Swallow (1)"
+            },
+            {
+                "Value": "toyota",
+                "Display": "Toyota (5808)"
+            },
+            {
+                "Value": "tvr",
+                "Display": "TVR (1)"
+            },
+            {
+                "Value": "vauxhall",
+                "Display": "Vauxhall (2)"
+            },
+            {
+                "Value": "volkswagen",
+                "Display": "Volkswagen (1485)"
+            },
+            {
+                "Value": "volvo",
+                "Display": "Volvo (185)"
+            }
+        ]
+    }
+]
