@@ -1,0 +1,52 @@
+https://openhacks.azurewebsites.net/#
+75856-af344-10@skillmeup.com
+Password123
+
+portal.azure.com
+hacker6@OTAPRD462ops.onmicrosoft.com
+/=L#-{m0FY#2
+
+====
+
+#Build a dot net core app
+dotnet new webapi todoapi
+dot net build
+dot net run
+
+# Create image and run image
+https://docs.docker.com/engine/examples/dotnetcore/#build-and-run-the-docker-image
+docker build -t aspnetapp .
+docker run -d -p 8080:80 --name myapp aspnetapp
+docker ps -a  # list all containers
+
+# Push image to docker hub
+docker login
+docker tag aspnetapp pngan/aspnetapp # tag image
+docker push pngan/aspnetapp # push image to docker hub
+
+# Provision onto service fabric mesh
+ https://docs.microsoft.com/en-us/azure/service-fabric-mesh/
+
+=====
+Minecraft offer code
+v2f6m-z9m3v-f4z4k-k2w2w-f4f9t
+phillipandkirsten@gmail.com    # Minecraft login
+
+
+docker exec -i pensive_tesla rcon-cli
+tell SouthernStart "hello"
+
+
+ docker logs -f pensive_tesla
+ 
+ -- acr
+ az acr create --resource-group myResourceGroup --name pnacr --sku Basic --admin-enabled true
+ 
+ az container logs --resource-group myResourceGroup --name mycontainer
+ 
+ az container exec --resource-group myResourceGroup --name pncontainer --exec-comman rcon-cli
+ 
+ 
+ 
+ 
+ 
