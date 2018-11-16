@@ -1,0 +1,14 @@
+C:\git\openhack\todoApi\bin\Debug\netcoreapp2.1\todoApi.deps.json
+C:\git\openhack\todoApi\bin\Debug\netcoreapp2.1\todoApi.runtimeconfig.json
+C:\git\openhack\todoApi\bin\Debug\netcoreapp2.1\todoApi.runtimeconfig.dev.json
+C:\git\openhack\todoApi\bin\Debug\netcoreapp2.1\todoApi.dll
+C:\git\openhack\todoApi\bin\Debug\netcoreapp2.1\todoApi.pdb
+C:\git\openhack\todoApi\obj\Debug\netcoreapp2.1\todoApi.csprojAssemblyReference.cache
+C:\git\openhack\todoApi\obj\Debug\netcoreapp2.1\todoApi.csproj.CoreCompileInputs.cache
+C:\git\openhack\todoApi\obj\Debug\netcoreapp2.1\todoApi.RazorAssemblyInfo.cache
+C:\git\openhack\todoApi\obj\Debug\netcoreapp2.1\todoApi.RazorAssemblyInfo.cs
+C:\git\openhack\todoApi\obj\Debug\netcoreapp2.1\todoApi.AssemblyInfoInputs.cache
+C:\git\openhack\todoApi\obj\Debug\netcoreapp2.1\todoApi.AssemblyInfo.cs
+C:\git\openhack\todoApi\obj\Debug\netcoreapp2.1\todoApi.RazorTargetAssemblyInfo.cache
+C:\git\openhack\todoApi\obj\Debug\netcoreapp2.1\todoApi.dll
+C:\git\openhack\todoApi\obj\Debug\netcoreapp2.1\todoApi.pdb
