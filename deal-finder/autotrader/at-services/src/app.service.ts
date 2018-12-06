@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
+import { hostname } from 'os';
+import * as moment from 'moment';
 
 @Injectable()
 export class AppService {
-  root(): string {
-    return 'Hello World!';
+  ping(): string {
+    return `${moment().format()}: ${hostname()}`;
   }
 }
