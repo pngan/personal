@@ -24,8 +24,8 @@ docker login
 docker tag aspnetapp pngan/aspnetapp # tag image
 docker push pngan/aspnetapp # push image to docker hub
 
-# Provision onto service fabric mesh
- https://docs.microsoft.com/en-us/azure/service-fabric-mesh/
+# Provision onto service fabric mesh 
+ az mesh deployment create --resource-group myResourceGroup --template-file  https://docs.microsoft.com/en-us/azure/service-fabric-mesh/ --parameters "{\"location\": {\"value\": \"eastus\"}}"
 
 =====
 Minecraft offer code

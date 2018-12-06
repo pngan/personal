@@ -1,0 +1,14 @@
+C:\Users\Phillip\Documents\GitHub\personal\swagger\bin\Debug\netcoreapp2.1\swagger.deps.json
+C:\Users\Phillip\Documents\GitHub\personal\swagger\bin\Debug\netcoreapp2.1\swagger.runtimeconfig.json
+C:\Users\Phillip\Documents\GitHub\personal\swagger\bin\Debug\netcoreapp2.1\swagger.runtimeconfig.dev.json
+C:\Users\Phillip\Documents\GitHub\personal\swagger\bin\Debug\netcoreapp2.1\swagger.dll
+C:\Users\Phillip\Documents\GitHub\personal\swagger\bin\Debug\netcoreapp2.1\swagger.pdb
+C:\Users\Phillip\Documents\GitHub\personal\swagger\obj\Debug\netcoreapp2.1\swagger.csprojAssemblyReference.cache
+C:\Users\Phillip\Documents\GitHub\personal\swagger\obj\Debug\netcoreapp2.1\swagger.csproj.CoreCompileInputs.cache
+C:\Users\Phillip\Documents\GitHub\personal\swagger\obj\Debug\netcoreapp2.1\swagger.RazorAssemblyInfo.cache
+C:\Users\Phillip\Documents\GitHub\personal\swagger\obj\Debug\netcoreapp2.1\swagger.RazorAssemblyInfo.cs
+C:\Users\Phillip\Documents\GitHub\personal\swagger\obj\Debug\netcoreapp2.1\swagger.AssemblyInfoInputs.cache
+C:\Users\Phillip\Documents\GitHub\personal\swagger\obj\Debug\netcoreapp2.1\swagger.AssemblyInfo.cs
+C:\Users\Phillip\Documents\GitHub\personal\swagger\obj\Debug\netcoreapp2.1\swagger.RazorTargetAssemblyInfo.cache
+C:\Users\Phillip\Documents\GitHub\personal\swagger\obj\Debug\netcoreapp2.1\swagger.dll
+C:\Users\Phillip\Documents\GitHub\personal\swagger\obj\Debug\netcoreapp2.1\swagger.pdb
