@@ -10,9 +10,11 @@ export class AppController {
     return this.appService.ping();
   }
 
+  // Test using:
+  // curl -s http://localhost:3000/at/makes
   @Get('makes')
-  getMake(): string {
-    return this.appService.make();
+  async getMake(): Promise<string> {
+    return await this.appService.make();
   }
 
   @Get('models')
