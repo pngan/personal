@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import { hostname } from 'os';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
-import { IFieldValues, IFieldValue } from './dto/at-dto';
+import { IFieldValues, IFieldValue } from '../../at-shared/dto/at-dto';
 
 @Injectable()
 export class AppService {
