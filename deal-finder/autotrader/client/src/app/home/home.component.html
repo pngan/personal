@@ -7,10 +7,9 @@
       <div class="form-group">
         <label for="sel1">Select a Make</label>
         <select class="form-control" id="sel1">
-          <option>Alfa Romeo</option>
-          <option>Buick</option>
-          <option>Chevrolet</option>
-          <option>Daimler</option>
+            <option *ngFor="let make of menuMakes" value={{make.Value}}>
+                {{make.Display}}
+            </option>
         </select>
       </div>
     </div>

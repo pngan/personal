@@ -1,9 +1,9 @@
 export interface IFieldValue {
     Value: string;
-    Display: number;
+    Display: string;
 }
 
 export interface IFieldValues {
     FieldName: string;
-    Values: IFieldValue[];
+    FieldValues: IFieldValue[];
 }

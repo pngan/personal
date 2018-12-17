@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AtService } from '../at.service';
+import { IFieldValues, IFieldValue } from '../../../../at-shared/dto/at-dto';
 
 @Component({
   selector: 'at-home',
@@ -11,9 +13,18 @@ export class HomeComponent implements OnInit {
   enableMain: boolean;
   enableRight: boolean;
   enableFooter: boolean;
-  constructor() { }
+
+  menuMakes: IFieldValue[];
+
+  constructor(private atService: AtService) {
+    this.menuMakes = new Array<IFieldValue>();
+   }
 
   ngOnInit() {
+    this.atService.getMakes().subscribe((makes: IFieldValues[]) => {
+      this.menuMakes = makes[0].FieldValues;
+      console.dir(makes[0].FieldValues);
+    });
   }
 
 }
