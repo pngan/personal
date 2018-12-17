@@ -1,29 +1,15 @@
 
-## Installation
+# README.md
 
-```bash
-$ npm install
-```
+This is an nestjs app. To run, you need node and nestjs cli install on your dev machine.
 
-## Running the app
+## First time setup
+```npm install```
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# incremental rebuild (webpack)
-$ npm run webpack
-$ npm run start:hmr
-
-# production mode
-$ npm run start:prod
-```
+## Running the app in watch mode
+```npm run start:dev```
 
 ## Test
-
-curl -s http://localhost:3000/at/makes
+```curl -s http://localhost:3000/at/makes```
 
 
