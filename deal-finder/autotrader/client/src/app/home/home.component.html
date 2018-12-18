@@ -5,10 +5,20 @@
     <div class="modal-content">
       <p>Find a car to buy</p>
       <div class="form-group">
-        <label for="sel1">Select a Make</label>
-        <select class="form-control" id="sel1">
+        <select class="form-control" (change)="setMake($event)">
+          <option>
+              Select a Make
+          </option>
             <option *ngFor="let make of menuMakes" value={{make.Value}}>
                 {{make.Display}}
+            </option>
+        </select>
+        <select *ngIf="menuModel" class="form-control" >
+            <option>
+                Select a Model
+            </option>
+            <option *ngFor="let model of menuModel" value={{model.Value}}>
+                {{model.Display}}
             </option>
         </select>
       </div>

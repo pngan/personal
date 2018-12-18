@@ -9,10 +9,14 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class AtService {
 
-  atUrl = 'http://localhost:3000/at/makes';
+  atBaseUrl = 'http://localhost:3000/at';
   constructor(private http: HttpClient) { }
 
   getMakes():  Observable<IFieldValues[]> {
-    return this.http.get<IFieldValues[]>(this.atUrl);
+    return this.http.get<IFieldValues[]>(`${this.atBaseUrl}/makes`);
+  }
+
+  getMenusForMake(make: string):  Observable<IFieldValues[]> {
+    return this.http.get<IFieldValues[]>(`${this.atBaseUrl}/menusForMake/${make}`);
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable, HttpService } from '@nestjs/common';
+import { Injectable, HttpService, Logger } from '@nestjs/common';
 import { map } from 'rxjs/operators';
 import { hostname } from 'os';
 import * as moment from 'moment';
@@ -7,12 +7,13 @@ import { IFieldValues, IFieldValue } from '../../at-shared/dto/at-dto';
 
 @Injectable()
 export class AppService {
+  baseUrl = 'https://www.autotrader.co.nz/search-fields/listing';
   constructor(private http: HttpService){}
 
 // Converting json to class
 // https://stackoverflow.com/questions/43894565/cast-object-to-interface-in-typescript
   async make(): Promise<any> {
-    return await this.http.get('https://www.autotrader.co.nz/search-fields/listing?searchterm=a,,,,,,',
+    return await this.http.get(`${this.baseUrl}?searchterm=a,,,,,,`,
       {
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
@@ -22,10 +23,17 @@ export class AppService {
     const fieldValueSet: IFieldValues[] = res.data;
     return fieldValueSet.filter(x => x.FieldName === 'make');
   }));
-
   }
-  model(): string {
-    return 'model';
+  async menusForMake(make: string): Promise<any> {
+    Logger.log(`**Make is ${make}`);
+    return await this.http.get(`${this.baseUrl}?searchterm=${make},,,,,,`,
+      {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      }).pipe(map((res) => {
+    return res.data;
+  }));
   }
   searchParams(): string {
     return 'searchParams';

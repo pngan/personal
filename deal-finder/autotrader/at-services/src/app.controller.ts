@@ -1,4 +1,4 @@
-import { Get, Controller } from '@nestjs/common';
+import { Get, Controller, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { json } from 'body-parser';
 
@@ -17,9 +17,10 @@ export class AppController {
   async getMake(): Promise<any> {
     return await this.appService.make();
   }
-  @Get('models')
-  getModel(): string {
-    return this.appService.model();
+
+  @Get('menusForMake/:make')
+  menusForMake(@Param('make') make: string): Promise<any>  {
+    return this.appService.menusForMake(make);
   }
 
   @Get('searchParams')
