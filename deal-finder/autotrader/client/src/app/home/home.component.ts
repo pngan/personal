@@ -29,8 +29,15 @@ export class HomeComponent implements OnInit {
   currentRegion: string;
   menuMakes: IFieldValue[];
 
+  priceOptions: Array<Number>;
+  priceOptionsLow: Array<Number>;
+  priceOptionsHigh: Array<Number>;
+
   constructor(private atService: AtService) {
     this.menuMakes = new Array<IFieldValue>();
+    this.priceOptions = [2500, 5000, 7500, 10000, 12000, 15000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000];
+    this.priceOptionsLow = this.priceOptions.filter(x => x);
+    this.priceOptionsHigh = this.priceOptions.filter(x => x);
    }
 
   ngOnInit() {
