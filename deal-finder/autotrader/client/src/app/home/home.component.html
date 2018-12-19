@@ -13,12 +13,20 @@
                 {{make.Display}}
             </option>
         </select>
-        <select *ngIf="menuModel" class="form-control" >
+        <select *ngIf="menuModel" class="form-control" (change)="setModel($event)" [(ngModel)]="currentModel" >
             <option>
                 Select a Model
             </option>
             <option *ngFor="let model of menuModel" value={{model.Value}}>
                 {{model.Display}}
+            </option>
+        </select>
+        <select *ngIf="menuRegion" class="form-control" >
+            <option>
+                Select a Region
+            </option>
+            <option *ngFor="let region of menuRegion" value={{region.Value}}>
+                {{region.Display}}
             </option>
         </select>
       </div>

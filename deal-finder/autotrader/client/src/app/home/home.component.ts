@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   menuModel: IFieldValue[];
   currentModel: string;
-  regionMenu: IFieldValue[];
+  menuRegion: IFieldValue[];
   currentRegion: string;
   menuMakes: IFieldValue[];
 
@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
   }
   async setMake(make: any) {
     this.currentMake = make.target.value;
+    this.currentModel = 'Select a Model';
 
     this.atService.getMenusForMake(this.currentMake)
       .subscribe((menus: IFieldValues[]) => {
@@ -49,6 +50,16 @@ export class HomeComponent implements OnInit {
       });
     }
 
+    async setModel(model: any) {
+      this.currentModel = model.target.value;
+      this.atService.getMenusForModel(this.currentMake, this.currentModel)
+        .subscribe((menus: IFieldValues[]) => {
+          this.menuModel = menus.filter(x => x.FieldName === 'model')[0].FieldValues;
+          console.dir(menus.filter(x => x.FieldName === 'model')[0].FieldValues);
+          this.menuRegion = menus.filter(x => x.FieldName === 'location')[0].FieldValues;
+          console.dir(menus.filter(x => x.FieldName === 'location')[0].FieldValues);
+        });
+      }
     // this.currentModel = undefined;
     // console.log(`%o`, this.currentMake);
     // const queryParameters = new QueryParameters();

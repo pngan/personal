@@ -23,6 +23,11 @@ export class AppController {
     return this.appService.menusForMake(make);
   }
 
+  @Get('menusForModel/:make/:model')
+  menusForModel(@Param('make') make: string, @Param('model') model: string): Promise<any>  {
+    return this.appService.menusForModel(make, model);
+  }
+
   @Get('searchParams')
   getSearchParams(): string {
     return this.appService.searchParams();

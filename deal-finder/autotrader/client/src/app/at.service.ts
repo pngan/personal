@@ -19,4 +19,8 @@ export class AtService {
   getMenusForMake(make: string):  Observable<IFieldValues[]> {
     return this.http.get<IFieldValues[]>(`${this.atBaseUrl}/menusForMake/${make}`);
   }
+
+  getMenusForModel(make: string, model: string):  Observable<IFieldValues[]> {
+    return this.http.get<IFieldValues[]>(`${this.atBaseUrl}/menusForModel/${make}/${model}`);
+  }
 }

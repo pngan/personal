@@ -35,6 +35,17 @@ export class AppService {
     return res.data;
   }));
   }
+  async menusForModel(make: string, model: string): Promise<any> {
+    Logger.log(`** Make is ${make}, Model is ${model}`);
+    return await this.http.get(`${this.baseUrl}?searchterm=${make},${model},,,,,`,
+      {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      }).pipe(map((res) => {
+    return res.data;
+  }));
+  }
   searchParams(): string {
     return 'searchParams';
   }
