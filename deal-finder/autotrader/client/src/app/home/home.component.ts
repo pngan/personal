@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AtService } from '../at.service';
 import { IFieldValues, IFieldValue } from '../../../../at-shared/dto/at-dto';
 
@@ -14,7 +14,7 @@ export class QueryParameters {
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges {
 
   enableHeader: boolean;
   enableMain: boolean;
@@ -33,11 +33,20 @@ export class HomeComponent implements OnInit {
   priceOptionsLow: Array<Number>;
   priceOptionsHigh: Array<Number>;
 
+  public priceLow: Number;
+
+  public priceHigh: Number;
+
+  defaultHighValue: Number;
+
   constructor(private atService: AtService) {
     this.menuMakes = new Array<IFieldValue>();
     this.priceOptions = [2500, 5000, 7500, 10000, 12000, 15000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000];
-    this.priceOptionsLow = this.priceOptions.filter(x => x);
-    this.priceOptionsHigh = this.priceOptions.filter(x => x);
+    this.priceOptionsLow = this.priceOptions;
+    this.priceOptionsHigh = this.priceOptions;
+    this.priceLow = this.priceOptions[0];
+    this.priceHigh = this.priceOptions[this.priceOptions.length - 1];
+    this.defaultHighValue = this.priceOptions[this.priceOptions.length - 1];
    }
 
   ngOnInit() {
@@ -45,6 +54,21 @@ export class HomeComponent implements OnInit {
       this.menuMakes = makes[0].FieldValues;
       console.dir(makes[0].FieldValues);
     });
+  }
+
+  priceLowChanged(lowValue: number) {
+    this.priceLow = lowValue;
+    console.log('price ', this.priceLow, this.priceHigh);
+    this.priceOptionsHigh = this.priceOptions.filter(x => x > lowValue);
+  }
+
+  priceHighChanged(highValue: number) {
+    this.priceHigh = highValue;
+    console.log('price ', this.priceLow, this.priceHigh);
+    this.priceOptionsLow = this.priceOptions.filter(x => x < highValue);
+  }
+  ngOnChanges(changes: any) {
+    console.log(`Changed = ${changes}`);
   }
   async setMake(make: any) {
     this.currentMake = make.target.value;
