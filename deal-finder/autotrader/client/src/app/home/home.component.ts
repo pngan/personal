@@ -9,6 +9,11 @@ export class QueryParameters {
   region: string;
   tranmissionStyle: string;
 }
+
+interface IPriceItem {
+  value: number;
+  text: string;
+}
 @Component({
   selector: 'at-home',
   templateUrl: './home.component.html',
@@ -29,24 +34,59 @@ export class HomeComponent implements OnInit, OnChanges {
   currentRegion: string;
   menuMakes: IFieldValue[];
 
-  priceOptions: Array<Number>;
-  priceOptionsLow: Array<Number>;
-  priceOptionsHigh: Array<Number>;
+  priceOptions: IPriceItem[];
 
-  public priceLow: Number;
+  priceOptionsLow: Array<IPriceItem>;
+  priceOptionsHigh: Array<IPriceItem>;
 
-  public priceHigh: Number;
+  public priceLow: IPriceItem;
 
-  defaultHighValue: Number;
+  public priceHigh: IPriceItem;
 
   constructor(private atService: AtService) {
     this.menuMakes = new Array<IFieldValue>();
-    this.priceOptions = [2500, 5000, 7500, 10000, 12000, 15000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000];
-    this.priceOptionsLow = this.priceOptions;
-    this.priceOptionsHigh = this.priceOptions;
-    this.priceLow = this.priceOptions[0];
-    this.priceHigh = this.priceOptions[this.priceOptions.length - 1];
-    this.defaultHighValue = this.priceOptions[this.priceOptions.length - 1];
+    this.priceOptions = [
+      {
+        value: 0,
+        text: 'Min'
+      },
+      {
+        value: 2000,
+        text: '2,000'
+      },
+      {
+        value: 5000,
+        text: '5,000'
+      },
+      {
+        value: 7000,
+        text: '7,000'
+      },
+      {
+        value: 10000,
+        text: '10,000'
+      },
+      {
+        value: 15000,
+        text: '15,000'
+      },
+      {
+        value: 20000,
+        text: '20,000'
+      },
+      {
+        value: 30000,
+        text: '30,000'
+      },
+      {
+        value: 50000,
+        text: '50,000'
+      },
+      {
+        value: 1000000,
+        text: 'Max'
+      },
+    ];
    }
 
   ngOnInit() {
@@ -54,18 +94,23 @@ export class HomeComponent implements OnInit, OnChanges {
       this.menuMakes = makes[0].FieldValues;
       console.dir(makes[0].FieldValues);
     });
+
+    this.priceOptionsLow = this.priceOptions.slice(0, -1);
+    this.priceOptionsHigh = this.priceOptions.slice(1);
+    this.priceHigh = this.priceOptions[this.priceOptions.length - 1];
+    this.priceLow = this.priceOptions[0];
   }
 
-  priceLowChanged(lowValue: number) {
+  priceLowChanged(lowValue: IPriceItem) {
     this.priceLow = lowValue;
-    console.log('price ', this.priceLow, this.priceHigh);
-    this.priceOptionsHigh = this.priceOptions.filter(x => x > lowValue);
+    console.log(`price ${this.priceLow.value}, ${this.priceHigh.value}`);
+    this.priceOptionsHigh = this.priceOptions.filter(x => x.value > lowValue.value);
   }
 
-  priceHighChanged(highValue: number) {
+  priceHighChanged(highValue: IPriceItem) {
     this.priceHigh = highValue;
-    console.log('price ', this.priceLow, this.priceHigh);
-    this.priceOptionsLow = this.priceOptions.filter(x => x < highValue);
+    console.log(`price ${this.priceLow.value}, ${this.priceHigh.value}`);
+    this.priceOptionsLow = this.priceOptions.filter(x => x.value < highValue.value);
   }
   ngOnChanges(changes: any) {
     console.log(`Changed = ${changes}`);

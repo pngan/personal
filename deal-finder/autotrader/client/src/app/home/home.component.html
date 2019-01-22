@@ -32,16 +32,16 @@
         <div class="advanced-search">
           <div class="box a">Price</div>
           <div class="box b">        
-            <select class="advanced-select" (change)="priceLowChanged($event.target.value)">
-                <option *ngFor="let pol of priceOptionsLow" value={{pol}}>
-                    {{pol}}
+            <select class="advanced-select" (change)="priceLowChanged($event.target)" dir="rtl">
+                <option *ngFor="let pol of priceOptionsLow" value={{pol.value}}>
+                    {{pol.text}}
                 </option>
         </select>
       </div>
           <div class="box c"> 
-              <select class="advanced-select"  (change)="priceHighChanged($event.target.value)"  [(ngModel)]="defaultHighValue">
-                  <option *ngFor="let pol of priceOptionsHigh" value={{pol}}>
-                      {{pol}}
+              <select class="advanced-select"  (change)="priceHighChanged($event.target)" [(ngModel)]="priceHigh.value" dir="rtl">
+                  <option *ngFor="let pol of priceOptionsHigh" value={{pol.value}} >
+                      {{pol.text}}
                   </option>
           </select>
         </div>
