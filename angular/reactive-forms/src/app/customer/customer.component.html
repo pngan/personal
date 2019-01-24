@@ -1,0 +1,15 @@
+<form (ngSubmit)="save()" [formGroup]="customerForm">
+  <div>
+    <label for="firstNameId">FirstName</label>
+    <input type="text" id="firstNameId" 
+    placeholder="First Name (required)" 
+    formControlName="firstName"
+    [ngClass]="{'isInvalid': (customerForm.get('firstName').touched || customerForm.get('firstName').dirty )}" />
+    <button type="submit" [title]="customerForm.valid ? 'Save data' : 'Disabled until data is valid'" [disabled]="!customerForm.valid">Save</button>
+    <button type="button" (click)="populateTestData()" >Test Data</button>
+  </div>
+</form>
+<br>Dirty: {{customerForm.dirty}}
+<br>Touched: {{customerForm.touched}}
+<br>Valid: {{customerForm.valid}}
+<br>Value: {{customerForm.value | json}}
