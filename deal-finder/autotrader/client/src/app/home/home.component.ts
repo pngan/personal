@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.priceOptions = [
       {
         value: 0,
-        text: 'Min'
+        text: 'Lowest'
       },
       {
         value: 2000,
@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit, OnChanges {
       },
       {
         value: 1000000,
-        text: 'Max'
+        text: 'Highest'
       },
     ];
 
@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.yearOptions = [
       {
         value: 1900,
-        text: 'Any'
+        text: 'Oldest'
       },
       {
         value: 1950,
@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit, OnChanges {
       },
       {
         value: 2020,
-        text: 'Any'
+        text: 'Newest'
       }
     ];
 
