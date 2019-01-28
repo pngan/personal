@@ -1,59 +1,70 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-  crossorigin="anonymous">
+    crossorigin="anonymous">
 <div class="wrapper">
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <p>Find a car to buy</p>
-      <div class="form-group">
-        <select class="form-control" (change)="setMake($event)">
-          <option>
-              Select a Make
-          </option>
-            <option *ngFor="let make of menuMakes" value={{make.Value}}>
-                {{make.Display}}
-            </option>
-        </select>
-        <select *ngIf="menuModel" class="form-control" (change)="setModel($event)" [(ngModel)]="currentModel" >
-            <option>
-                Select a Model
-            </option>
-            <option *ngFor="let model of menuModel" value={{model.Value}}>
-                {{model.Display}}
-            </option>
-        </select>
-        <select *ngIf="menuRegion" class="form-control" >
-            <option>
-                Select a Region
-            </option>
-            <option *ngFor="let region of menuRegion" value={{region.Value}}>
-                {{region.Display}}
-            </option>
-        </select>
-        <div class="advanced-search">
-          <div class="box a">Price</div>
-          <div class="box b">        
-            <select class="advanced-select" (change)="priceLowChanged($event.target)" dir="rtl">
-                <option *ngFor="let pol of priceOptionsLow" value={{pol.value}}>
-                    {{pol.text}}
-                </option>
-        </select>
-      </div>
-          <div class="box c"> 
-              <select class="advanced-select"  (change)="priceHighChanged($event.target)" [(ngModel)]="priceHigh.value" dir="rtl">
-                  <option *ngFor="let pol of priceOptionsHigh" value={{pol.value}} >
-                      {{pol.text}}
-                  </option>
-          </select>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <p>Find a car to buy</p>
+            <div class="form-group">
+                <select class="form-control" (change)="setMake($event)">
+                    <option>
+                        Select a Make
+                    </option>
+                    <option *ngFor="let make of menuMakes" value={{make.Value}}>
+                        {{make.Display}}
+                    </option>
+                </select>
+                <select *ngIf="menuModel" class="form-control" (change)="setModel($event)" [(ngModel)]="currentModel">
+                    <option>
+                        Select a Model
+                    </option>
+                    <option *ngFor="let model of menuModel" value={{model.Value}}>
+                        {{model.Display}}
+                    </option>
+                </select>
+                <select *ngIf="menuRegion" class="form-control">
+                    <option>
+                        Select a Region
+                    </option>
+                    <option *ngFor="let region of menuRegion" value={{region.Value}}>
+                        {{region.Display}}
+                    </option>
+                </select>
+                <div class="advanced-search">
+                    <div class="box a">Price</div>
+                    <div class="box b">
+                        <select class="advanced-select" (change)="priceLowChanged($event.target)" dir="rtl">
+                            <option *ngFor="let pol of priceOptionsLow" value={{pol.value}}>
+                                {{pol.text}}
+                            </option>
+                        </select>
+                    </div><div class="box c">
+                        <select class="advanced-select" (change)="priceHighChanged($event.target)" [(ngModel)]="priceHigh.value" dir="rtl">
+                            <option *ngFor="let pol of priceOptionsHigh" value={{pol.value}}>
+                                {{pol.text}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="box d">Year</div>
+                    <div class="box e">
+                        <select class="advanced-select" (change)="yearLowChanged($event.target)" dir="rtl">
+                            <option *ngFor="let yrl of yearOptionsLow" value={{yrl.value}}>
+                                {{yrl.text}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="box f">
+                        <select class="advanced-select" (change)="yearHighChanged($event.target)" [(ngModel)]="yearHigh" dir="rtl">
+                            <option *ngFor="let year of yearOptionsHigh" value={{year.value}}>
+                                {{year.text}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="box g">Kilometres</div>
+                    <div class="box h">H</div>
+                    <div class="box i">I</div>
+                </div>
+            </div>
         </div>
-          <div class="box d">Year</div>
-          <div class="box e">E</div>
-          <div class="box f">F</div>
-          <div class="box g">Kilometres</div>
-          <div class="box h">H</div>
-          <div class="box i">I</div>
-        </div>
-      </div>
-    </div>
 
-  </div>
+    </div>
 </div>

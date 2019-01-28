@@ -14,6 +14,11 @@ interface IPriceItem {
   value: number;
   text: string;
 }
+
+interface IYearItem {
+  value: number;
+  text: string;
+}
 @Component({
   selector: 'at-home',
   templateUrl: './home.component.html',
@@ -43,6 +48,12 @@ export class HomeComponent implements OnInit, OnChanges {
 
   public priceHigh: IPriceItem;
 
+  yearOptions: IYearItem[];
+
+  yearOptionsLow: Array<IYearItem>;
+  yearOptionsHigh: Array<IYearItem>;
+  public yearLow: number;
+  public yearHigh: number;
   constructor(private atService: AtService) {
     this.menuMakes = new Array<IFieldValue>();
     this.priceOptions = [
@@ -87,7 +98,92 @@ export class HomeComponent implements OnInit, OnChanges {
         text: 'Max'
       },
     ];
-   }
+
+
+    this.yearOptions = [
+      {
+        value: 1900,
+        text: 'Any'
+      },
+      {
+        value: 1950,
+        text: '1950'
+      },
+      {
+        value: 1960,
+        text: '1960'
+      },
+      {
+        value: 1970,
+        text: '1970'
+      },
+      {
+        value: 1980,
+        text: '1980'
+      },
+      {
+        value: 1990,
+        text: '1990'
+      },
+      {
+        value: 1995,
+        text: '1995'
+      },
+      {
+        value: 2000,
+        text: '2000'
+      },
+      {
+        value: 2005,
+        text: '2005'
+      },
+      {
+        value: 2010,
+        text: '2010'
+      },
+      {
+        value: 2011,
+        text: '2011'
+      },
+      {
+        value: 2012,
+        text: '2012'
+      },
+      {
+        value: 2013,
+        text: '2013'
+      },
+      {
+        value: 2014,
+        text: '2014'
+      },
+      {
+        value: 2015,
+        text: '2015'
+      },
+      {
+        value: 2016,
+        text: '2016'
+      },
+      {
+        value: 2017,
+        text: '2017'
+      },
+      {
+        value: 2018,
+        text: '2018'
+      },
+      {
+        value: 2019,
+        text: '2019'
+      },
+      {
+        value: 2020,
+        text: 'Any'
+      }
+    ];
+
+  }
 
   ngOnInit() {
     this.atService.getMakes().subscribe((makes: IFieldValues[]) => {
@@ -99,18 +195,46 @@ export class HomeComponent implements OnInit, OnChanges {
     this.priceOptionsHigh = this.priceOptions.slice(1);
     this.priceHigh = this.priceOptions[this.priceOptions.length - 1];
     this.priceLow = this.priceOptions[0];
-  }
 
+    this.yearOptionsLow = this.yearOptions.slice(0, -1);
+    this.yearOptionsHigh = this.yearOptions.slice(1);
+    this.yearHigh = this.yearOptions[this.yearOptions.length - 1].value; 
+    this.yearLow = this.yearOptions[0].value;
+  }
   priceLowChanged(lowValue: IPriceItem) {
     this.priceLow = lowValue;
     console.log(`price ${this.priceLow.value}, ${this.priceHigh.value}`);
     this.priceOptionsHigh = this.priceOptions.filter(x => x.value > lowValue.value);
   }
 
+
   priceHighChanged(highValue: IPriceItem) {
     this.priceHigh = highValue;
     console.log(`price ${this.priceLow.value}, ${this.priceHigh.value}`);
     this.priceOptionsLow = this.priceOptions.filter(x => x.value < highValue.value);
+  }
+
+  yearLowChanged(lowYear: IYearItem) {
+    this.yearLow = lowYear.value;
+    console.log(`year ${this.yearLow}, ${this.yearHigh}`);
+    this.yearOptionsHigh = this.yearOptions.filter(x => x.value > lowYear.value);
+  }
+
+
+  yearLowChangedXXX(lowYear: HTMLSelectElement) {
+    //this.yearLow = lowYear;
+
+    console.log(`low year  %o`, lowYear.value);
+    //console.log(`low year  %o`, this.yearLow.value);
+    console.log(`low year  ${lowYear.constructor.name}`);
+  }
+
+  yearHighChanged(highYear: IYearItem) {
+    console.log(`year input ${highYear.value}`);
+
+    this.yearHigh = +highYear.value;
+    console.log(`year ${this.yearLow}, ${this.yearHigh}`);
+    this.yearOptionsLow = this.yearOptions.filter(x => x.value < highYear.value);
   }
   ngOnChanges(changes: any) {
     console.log(`Changed = ${changes}`);
@@ -141,4 +265,11 @@ export class HomeComponent implements OnInit, OnChanges {
     // const queryParameters = new QueryParameters();
     // queryParameters.make = this.currentMake;
     // queryParameters.region = this.currentRegion;
+
+    search(): void {
+      console.log('Perform search');
+    }
+
+
+
 }
