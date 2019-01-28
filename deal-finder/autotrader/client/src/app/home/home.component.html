@@ -60,8 +60,20 @@
                         </select>
                     </div>
                     <div class="box g">Kilometres</div>
-                    <div class="box h">H</div>
-                    <div class="box i">I</div>
+                    <div class="box h">
+                        <select class="advanced-select" (change)="distLowChanged($event.target)" dir="rtl">
+                            <option *ngFor="let distl of distOptionsLow" value={{distl.value}}>
+                                {{distl.text}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="box i">
+                        <select class="advanced-select" (change)="distHighChanged($event.target)" [(ngModel)]="distHigh" dir="rtl">
+                            <option *ngFor="let disth of distOptionsHigh" value={{disth.value}}>
+                                {{disth.text}}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>

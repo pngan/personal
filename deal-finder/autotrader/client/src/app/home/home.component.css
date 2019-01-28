@@ -56,12 +56,13 @@
     .advanced-select {
       background-color: rgba(0, 0, 0, 0.5);
       color: white;
+      min-width: 70px;
     }
 
     
 .advanced-search {
     display: grid;
-    grid-template-columns: 20% 40% 40%;
+    grid-template-columns: 40% 30% 30%;
     margin-left: 15px;
 
     grid-gap: 3%;

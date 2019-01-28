@@ -19,6 +19,11 @@ interface IYearItem {
   value: number;
   text: string;
 }
+
+interface IDistItem {
+  value: number;
+  text: string;
+}
 @Component({
   selector: 'at-home',
   templateUrl: './home.component.html',
@@ -54,6 +59,14 @@ export class HomeComponent implements OnInit, OnChanges {
   yearOptionsHigh: Array<IYearItem>;
   public yearLow: number;
   public yearHigh: number;
+
+  distOptions: IDistItem[];
+
+  distOptionsLow: Array<IDistItem>;
+  distOptionsHigh: Array<IDistItem>;
+  public distLow: number;
+  public distHigh: number;
+
   constructor(private atService: AtService) {
     this.menuMakes = new Array<IFieldValue>();
     this.priceOptions = [
@@ -183,6 +196,41 @@ export class HomeComponent implements OnInit, OnChanges {
       }
     ];
 
+    this.distOptions = [
+      {
+        value: 0,
+        text: 'Any'
+      },
+      {
+        value: 20000,
+        text: '20000'
+      },
+      {
+        value: 50000,
+        text: '50000'
+      },
+      {
+        value: 80000,
+        text: '80000'
+      },
+      {
+        value: 100000,
+        text: '100000'
+      },
+      {
+        value: 150000,
+        text: '150000'
+      },
+      {
+        value: 200000,
+        text: '200000'
+      },
+      {
+        value: 1000000,
+        text: 'Any'
+      }
+    ];
+
   }
 
   ngOnInit() {
@@ -198,9 +246,15 @@ export class HomeComponent implements OnInit, OnChanges {
 
     this.yearOptionsLow = this.yearOptions.slice(0, -1);
     this.yearOptionsHigh = this.yearOptions.slice(1);
-    this.yearHigh = this.yearOptions[this.yearOptions.length - 1].value; 
+    this.yearHigh = this.yearOptions[this.yearOptions.length - 1].value;
     this.yearLow = this.yearOptions[0].value;
+
+    this.distOptionsLow = this.distOptions.slice(0, -1);
+    this.distOptionsHigh = this.distOptions.slice(1);
+    this.distHigh = this.distOptions[this.distOptions.length - 1].value;
+    this.distLow = this.distOptions[0].value;
   }
+
   priceLowChanged(lowValue: IPriceItem) {
     this.priceLow = lowValue;
     console.log(`price ${this.priceLow.value}, ${this.priceHigh.value}`);
@@ -219,22 +273,22 @@ export class HomeComponent implements OnInit, OnChanges {
     console.log(`year ${this.yearLow}, ${this.yearHigh}`);
     this.yearOptionsHigh = this.yearOptions.filter(x => x.value > lowYear.value);
   }
-
-
-  yearLowChangedXXX(lowYear: HTMLSelectElement) {
-    //this.yearLow = lowYear;
-
-    console.log(`low year  %o`, lowYear.value);
-    //console.log(`low year  %o`, this.yearLow.value);
-    console.log(`low year  ${lowYear.constructor.name}`);
-  }
-
   yearHighChanged(highYear: IYearItem) {
-    console.log(`year input ${highYear.value}`);
-
     this.yearHigh = +highYear.value;
     console.log(`year ${this.yearLow}, ${this.yearHigh}`);
     this.yearOptionsLow = this.yearOptions.filter(x => x.value < highYear.value);
+  }
+
+  distLowChanged(lowDist: IDistItem) {
+    this.distLow = lowDist.value;
+    console.log(`dist ${this.distLow}, ${this.distHigh}`);
+    this.distOptionsHigh = this.distOptions.filter(x => x.value > lowDist.value);
+  }
+
+  distHighChanged(highDist: IDistItem) {
+    this.distHigh = +highDist.value;
+    console.log(`dist ${this.distLow}, ${this.distHigh}`);
+    this.distOptionsLow = this.distOptions.filter(x => x.value < highDist.value);
   }
   ngOnChanges(changes: any) {
     console.log(`Changed = ${changes}`);
