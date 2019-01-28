@@ -49,9 +49,9 @@ export class HomeComponent implements OnInit, OnChanges {
   priceOptionsLow: Array<IPriceItem>;
   priceOptionsHigh: Array<IPriceItem>;
 
-  public priceLow: IPriceItem;
+  public priceLow: number;
 
-  public priceHigh: IPriceItem;
+  public priceHigh: number;
 
   yearOptions: IYearItem[];
 
@@ -241,8 +241,8 @@ export class HomeComponent implements OnInit, OnChanges {
 
     this.priceOptionsLow = this.priceOptions.slice(0, -1);
     this.priceOptionsHigh = this.priceOptions.slice(1);
-    this.priceHigh = this.priceOptions[this.priceOptions.length - 1];
-    this.priceLow = this.priceOptions[0];
+    this.priceHigh = this.priceOptions[this.priceOptions.length - 1].value;
+    this.priceLow = this.priceOptions[0].value;
 
     this.yearOptionsLow = this.yearOptions.slice(0, -1);
     this.yearOptionsHigh = this.yearOptions.slice(1);
@@ -256,15 +256,15 @@ export class HomeComponent implements OnInit, OnChanges {
   }
 
   priceLowChanged(lowValue: IPriceItem) {
-    this.priceLow = lowValue;
-    console.log(`price ${this.priceLow.value}, ${this.priceHigh.value}`);
+    this.priceLow = lowValue.value;
+    console.log(`price ${this.priceLow}, ${this.priceHigh}`);
     this.priceOptionsHigh = this.priceOptions.filter(x => x.value > lowValue.value);
   }
 
 
   priceHighChanged(highValue: IPriceItem) {
-    this.priceHigh = highValue;
-    console.log(`price ${this.priceLow.value}, ${this.priceHigh.value}`);
+    this.priceHigh = highValue.value;
+    console.log(`price ${this.priceLow}, ${this.priceHigh}`);
     this.priceOptionsLow = this.priceOptions.filter(x => x.value < highValue.value);
   }
 

@@ -38,7 +38,7 @@
                             </option>
                         </select>
                     </div><div class="box c">
-                        <select class="advanced-select" (change)="priceHighChanged($event.target)" [(ngModel)]="priceHigh.value" dir="rtl">
+                        <select class="advanced-select" (change)="priceHighChanged($event.target)" [(ngModel)]="priceHigh" dir="rtl">
                             <option *ngFor="let pol of priceOptionsHigh" value={{pol.value}}>
                                 {{pol.text}}
                             </option>
