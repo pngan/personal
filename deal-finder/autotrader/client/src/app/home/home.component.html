@@ -2,7 +2,9 @@
     crossorigin="anonymous">
 <div class="wrapper">
     <div id="myModal" class="modal">
+
         <div class="modal-content">
+
             <p>Find a car to buy</p>
             <div class="form-group">
                 <select class="form-control" (change)="setMake($event)">
@@ -37,8 +39,10 @@
                                 {{pol.text}}
                             </option>
                         </select>
-                    </div><div class="box c">
-                        <select class="advanced-select" (change)="priceHighChanged($event.target)" [(ngModel)]="priceHigh" dir="rtl">
+                    </div>
+                    <div class="box c">
+                        <select class="advanced-select" (change)="priceHighChanged($event.target)" [(ngModel)]="priceHigh"
+                            dir="rtl">
                             <option *ngFor="let pol of priceOptionsHigh" value={{pol.value}}>
                                 {{pol.text}}
                             </option>
@@ -53,13 +57,14 @@
                         </select>
                     </div>
                     <div class="box f">
-                        <select class="advanced-select" (change)="yearHighChanged($event.target)" [(ngModel)]="yearHigh" dir="rtl">
+                        <select class="advanced-select" (change)="yearHighChanged($event.target)" [(ngModel)]="yearHigh"
+                            dir="rtl">
                             <option *ngFor="let year of yearOptionsHigh" value={{year.value}}>
                                 {{year.text}}
                             </option>
                         </select>
                     </div>
-                    <div class="box g">Kilometres</div>
+                    <div class="box g">Kms</div>
                     <div class="box h">
                         <select class="advanced-select" (change)="distLowChanged($event.target)" dir="rtl">
                             <option *ngFor="let distl of distOptionsLow" value={{distl.value}}>
@@ -68,7 +73,8 @@
                         </select>
                     </div>
                     <div class="box i">
-                        <select class="advanced-select" (change)="distHighChanged($event.target)" [(ngModel)]="distHigh" dir="rtl">
+                        <select class="advanced-select" (change)="distHighChanged($event.target)" [(ngModel)]="distHigh"
+                            dir="rtl">
                             <option *ngFor="let disth of distOptionsHigh" value={{disth.value}}>
                                 {{disth.text}}
                             </option>
@@ -76,7 +82,9 @@
                     </div>
                 </div>
             </div>
+            <div >
+                <input type="button" value="Search" class="btn btn-primary searchButton" >
+            </div>
         </div>
-
     </div>
 </div>

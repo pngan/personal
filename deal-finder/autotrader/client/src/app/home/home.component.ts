@@ -72,7 +72,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.priceOptions = [
       {
         value: 0,
-        text: 'Lowest'
+        text: 'Low'
       },
       {
         value: 2000,
@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit, OnChanges {
       },
       {
         value: 1000000,
-        text: 'Highest'
+        text: 'High'
       },
     ];
 
@@ -116,7 +116,7 @@ export class HomeComponent implements OnInit, OnChanges {
     this.yearOptions = [
       {
         value: 1900,
-        text: 'Oldest'
+        text: 'Old'
       },
       {
         value: 1950,
@@ -192,7 +192,7 @@ export class HomeComponent implements OnInit, OnChanges {
       },
       {
         value: 2020,
-        text: 'Newest'
+        text: 'New'
       }
     ];
 
@@ -320,7 +320,7 @@ export class HomeComponent implements OnInit, OnChanges {
     // queryParameters.make = this.currentMake;
     // queryParameters.region = this.currentRegion;
 
-    search(): void {
+    doSearch(): void {
       console.log('Perform search');
     }
 

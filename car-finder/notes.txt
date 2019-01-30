@@ -3,4 +3,10 @@ X-Requested-With: XMLHttpRequest
 
 Do this from angular
 
+Example of request
+GET /used-cars-for-sale/toyota-corolla-hatchback-auckland/price-2500-any/year-1950-any/transmission-automatic/kms-10000-any HTTP/1.1
+https://www.autotrader.co.nz//used-cars-for-sale/toyota-corolla-hatchback-auckland/price-2500-any/year-1950-any/transmission-automatic/kms-10000-any
+https://www.autotrader.co.nz/used-cars-for-sale/toyota-corolla
 
+Cookie: selectedPageSize=20000
+X-Requested-With: XMLHttpRequest
