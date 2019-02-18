@@ -9,6 +9,7 @@ async function bootstrap() {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
     next();
   });
+  app.enableCors();
   await app.listen(3000);
 }
 bootstrap();

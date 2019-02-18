@@ -1,6 +1,7 @@
-import { Get, Controller, Param } from '@nestjs/common';
+import { Get, Post, Controller, Param, Body, Logger } from '@nestjs/common';
 import { AppService } from './app.service';
 import { json } from 'body-parser';
+import { QueryParams } from '../../at-shared/dto/at-dto';
 
 @Controller('at')
 export class AppController {
@@ -33,8 +34,9 @@ export class AppController {
     return this.appService.searchParams();
   }
 
-  @Get('vehicles')
-  getVehicles(): string {
-    return this.appService.vehicles();
+  @Post('vehicles')
+  getVehicles(@Body() queryParams: any) {
+    Logger.log('** vehicles');
+    return this.appService.vehicles(queryParams);
   }
 }

@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import { hostname } from 'os';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
-import { IFieldValues, IFieldValue } from '../../at-shared/dto/at-dto';
+import { IFieldValues, IFieldValue, QueryParams } from '../../at-shared/dto/at-dto';
 
 @Injectable()
 export class AppService {
@@ -25,7 +25,7 @@ export class AppService {
   }));
   }
   async menusForMake(make: string): Promise<any> {
-    Logger.log(`**Make is ${make}`);
+    Logger.log(`** Make is ${make}`);
     return await this.http.get(`${this.baseUrl}?searchterm=${make},,,,,,`,
       {
         headers: {
@@ -49,8 +49,10 @@ export class AppService {
   searchParams(): string {
     return 'searchParams';
   }
-  vehicles(): string {
-    return 'vehicles';
+  vehicles(queryParams: QueryParams): string {
+    Logger.log(`Search for ${queryParams}`);
+    Logger.log(`Return ${JSON.stringify('hello')}`);
+    return JSON.stringify('hello');
   }
   ping(): string {
     return `${moment().format()}: ${hostname()}`;

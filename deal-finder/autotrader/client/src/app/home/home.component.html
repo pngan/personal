@@ -23,7 +23,7 @@
                         {{model.Display}}
                     </option>
                 </select>
-                <select *ngIf="menuRegion" class="form-control">
+                <select *ngIf="menuRegion" class="form-control" (change)="setRegion($event)">
                     <option>
                         Select a Region
                     </option>
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div >
-                <input type="button" value="Search" class="btn btn-primary searchButton" >
+                <input type="button" value="Search" class="btn btn-primary searchButton" (click)="doSearch()" >
             </div>
         </div>
     </div>

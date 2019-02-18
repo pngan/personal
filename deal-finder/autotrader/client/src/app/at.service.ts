@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { IFieldValues, IFieldValue } from '../../../at-shared/dto/at-dto';
+import { IFieldValues, IFieldValue, QueryParams } from '../../../at-shared/dto/at-dto';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
@@ -22,5 +22,12 @@ export class AtService {
 
   getMenusForModel(make: string, model: string):  Observable<IFieldValues[]> {
     return this.http.get<IFieldValues[]>(`${this.atBaseUrl}/menusForModel/${make}/${model}`);
+  }
+
+  searchVehicles(queryParams: QueryParams): Observable<string> {
+    const headersRequest = {
+      'Content-Type': 'application/json'
+    };
+    return this.http.post<string>(`${this.atBaseUrl}/vehicles`, queryParams, { headers: headersRequest });
   }
 }

@@ -1,14 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AtService } from '../at.service';
-import { IFieldValues, IFieldValue } from '../../../../at-shared/dto/at-dto';
-
-export class QueryParameters {
-  make: string;
-  model: string;
-  bodyStyle: string;
-  region: string;
-  tranmissionStyle: string;
-}
+import { IFieldValues, IFieldValue, QueryParams } from '../../../../at-shared/dto/at-dto';
 
 interface IPriceItem {
   value: number;
@@ -261,7 +253,6 @@ export class HomeComponent implements OnInit, OnChanges {
     this.priceOptionsHigh = this.priceOptions.filter(x => x.value > lowValue.value);
   }
 
-
   priceHighChanged(highValue: IPriceItem) {
     this.priceHigh = highValue.value;
     console.log(`price ${this.priceLow}, ${this.priceHigh}`);
@@ -314,16 +305,34 @@ export class HomeComponent implements OnInit, OnChanges {
           console.dir(menus.filter(x => x.FieldName === 'location')[0].FieldValues);
         });
       }
+
+  async setRegion(region: any) {
+    this.currentRegion = region.target.value;
+  }
     // this.currentModel = undefined;
     // console.log(`%o`, this.currentMake);
     // const queryParameters = new QueryParameters();
     // queryParameters.make = this.currentMake;
     // queryParameters.region = this.currentRegion;
 
-    doSearch(): void {
-      console.log('Perform search');
-    }
-
-
-
+  doSearch(): void {
+    const queryValues: QueryParams = {
+      priceLow: this.priceLow,
+      priceHigh: this.priceHigh,
+      yearLow: this.yearLow,
+      yearHigh: this.yearHigh,
+      distLow: this.distLow,
+      distHigh: this.distHigh,
+      make: this.currentMake,
+      model: this.currentModel,
+      bodyStyle: '',
+      region: this.currentRegion,
+      tranmissionStyle: ''
+    };
+    console.log(`%o`, queryValues);
+    this.atService.searchVehicles(queryValues)
+    .subscribe((response: string) => {
+      console.log(`Vehicles = ${response}`);
+    });
+  }
 }
