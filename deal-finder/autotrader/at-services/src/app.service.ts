@@ -50,10 +50,8 @@ export class AppService {
   searchParams(): string {
     return 'searchParams';
   }
-  vehicles(queryParams: QueryParams): string {
+  async vehicles(queryParams: QueryParams): Promise<any> {
     Logger.log(`Search for ${JSON.stringify(queryParams)}`);
-    Logger.log(`Return ${JSON.stringify('hello')}`);
-
     let url = 'https://www.autotrader.co.nz/used-cars-for-sale/';
     if (queryParams.make !== undefined)
       url += queryParams.make;
@@ -62,7 +60,17 @@ export class AppService {
     if (queryParams.region !== undefined)
       url += '-' + queryParams.region;
     url += `/price-${queryParams.priceLow}-${queryParams.priceHigh}/year-${queryParams.yearLow}-${queryParams.yearHigh}/kms-${queryParams.distLow}-${queryParams.distHigh}`;
-    return JSON.stringify(url);
+    Logger.log(`Url = ${url}`);
+
+    return await this.http.get(url,
+    {
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'Cookie': 'selectedPageSize=500',
+      },
+    }).pipe(map((res) => {
+      return JSON.stringify(res.data);
+    }));
   }
   ping(): string {
     return `${moment().format()}: ${hostname()}`;

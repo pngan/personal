@@ -35,8 +35,7 @@ export class AppController {
   }
 
   @Post('vehicles')
-  getVehicles(@Body() queryParams: any) {
-    Logger.log('** vehicles');
+  getVehicles(@Body() queryParams: any): Promise<any>  {
     return this.appService.vehicles(queryParams);
   }
 }
