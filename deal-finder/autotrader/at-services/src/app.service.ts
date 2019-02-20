@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { IFieldValues, IFieldValue, QueryParams } from '../../at-shared/dto/at-dto';
 import { json } from 'body-parser';
+import * as cheerio from 'cheerio';
 
 @Injectable()
 export class AppService {
@@ -69,6 +70,8 @@ export class AppService {
         'Cookie': 'selectedPageSize=500',
       },
     }).pipe(map((res) => {
+      const $ = cheerio.load(res.data);
+      Logger.log(`Url = ${$('p[class=price]').text()}`);
       return JSON.stringify(res.data);
     }));
   }
