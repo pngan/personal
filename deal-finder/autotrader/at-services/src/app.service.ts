@@ -72,6 +72,22 @@ export class AppService {
     }).pipe(map((res) => {
       const $ = cheerio.load(res.data);
       Logger.log(`Url = ${$('p[class=price]').text()}`);
+
+      const item = [];
+      $('div .list-item').each((i, e) => {
+        const price = $('p[class="price"]', e).text();
+        if (price.startsWith('\$') === false)
+          return true;
+        const yearStr = $('p[class="title"]', e).text().slice(0, 4);
+        const year = +yearStr;
+        if (Number.isNaN(year) || year < 1900 || year > 2100)
+          return true;
+        const mileage = $('ul[class="features"]', e).children().first().text();
+        if (mileage.endsWith('km') === false)
+          return true;
+        Logger.log(`Item: ${yearStr}, ${price}, ${mileage}`);
+      });
+
       return JSON.stringify(res.data);
     }));
   }
