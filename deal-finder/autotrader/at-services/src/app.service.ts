@@ -75,17 +75,25 @@ export class AppService {
 
       const item = [];
       $('div .list-item').each((i, e) => {
-        const price = $('p[class="price"]', e).text();
+        const priceElem = $('p[class="price"]', e);
+        const price = $(priceElem).text();
         if (price.startsWith('\$') === false)
           return true;
-        const yearStr = $('p[class="title"]', e).text().slice(0, 4);
+        const titleStrElem = $('p[class="title"]', e);
+        const title = $(titleStrElem).text();
+        const yearStr = title.slice(0, 4);
         const year = +yearStr;
         if (Number.isNaN(year) || year < 1900 || year > 2100)
           return true;
+
+        const urlFragment = $('a', titleStrElem).attr('href');
+
+        const image = $('a[class=thumbnail] img[class=lazyload]', e).attr('data-original');
+
         const mileage = $('ul[class="features"]', e).children().first().text();
         if (mileage.endsWith('km') === false)
           return true;
-        Logger.log(`Item: ${yearStr}, ${price}, ${mileage}`);
+        Logger.log(`Item: ${title}, ${yearStr}, ${price}, ${mileage}, ${urlFragment}, ${image}`);
       });
 
       return JSON.stringify(res.data);
