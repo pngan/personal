@@ -1,0 +1,147 @@
+<html>
+
+<head>
+    <title>Responsive Layout Experiment</title>
+</head>
+<style type="text/css">
+    .search-panel {
+        background-color: aliceblue;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 1em;
+    }
+
+    @media only screen and (min-width: 450px) {
+        .search-panel {
+            background-color: aliceblue;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 1em;
+        }
+    }
+
+    .single {
+        background-color: lavenderblush
+    }
+
+    .single * {
+        width: 100%;
+    }
+
+    .pair {
+        background-color: lavenderblush;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "title title"
+            "select1 select2";
+    }
+
+    .pair-header {
+        grid-area: title;
+    }
+
+
+    .pair-1 {
+        grid-area: select1;
+    }
+
+    .pair-1 * {
+        width: 95%;
+    }
+
+    .pair-2 {
+        grid-area: select2;
+        text-align: right;
+    }
+
+    .pair-2 * {
+        width: 95%;
+    }
+
+    select {
+        width: 100%;
+    }
+</style>
+
+<body>
+    <section class="search-panel">
+        <div class="single">
+            <select name="make">
+                <option value="ford">Ford</option>
+                <option value="toyota">Toyota</option>
+            </select>
+        </div>
+        <div class="single">
+            <select name="model">
+                <option value="corolla">corolla</option>
+                <option value="yaris">yaris</option>
+            </select>
+        </div>
+        <div class="single">
+            <select name="region">
+                <option value="Auckland">Auckland</option>
+                <option value="Wellington">Wellington</option>
+            </select>
+        </div>
+
+        <div class="pair">
+            <div class="pair-header">
+                Price
+            </div>
+            <div class="pair-1">
+                <select name="price-1">
+                    <option value="0">Low</option>
+                    <option value="10000">$10000</option>
+                </select>
+            </div>
+            <div class="pair-2">
+                <select name="price-2">
+                    <option value="10000">$10000</option>
+                    <option value="0">High</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="pair">
+            <div class="pair-header">
+                Year
+            </div>
+            <div class="pair-1">
+                <select name="year-1">
+                    <option value="1980">Old</option>
+                    <option value="2019">2010</option>
+                </select>
+            </div>
+            <div class="pair-2">
+                <select name="year-2">
+                    <option value="2019">New</option>
+                    <option value="2018">2018</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="pair">
+            <div class="pair-header">
+                Mileage
+            </div>
+            <div class="pair-1">
+                <select name="mileage-1">
+                    <option value="0">Low</option>
+                    <option value="10000">10000</option>
+                </select>
+            </div>
+            <div class="pair-2">
+                <select name="mileage-2">
+                    <option value="100000">High</option>
+                    <option value="50000">50000</option>
+                </select>
+            </div>
+        </div>
+        <div class="search">
+            <button>Search</button>
+        </div>
+    </section>
+</body>
+
+</html>
