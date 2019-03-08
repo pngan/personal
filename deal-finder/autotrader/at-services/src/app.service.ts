@@ -71,10 +71,8 @@ export class AppService {
       },
     }).pipe(map((res) => {
       const $ = cheerio.load(res.data);
-      Logger.log(`Url = ${$('p[class=price]').text()}`);
-
       const item = [];
-      $('div .list-item').each((i, e) => {
+      $('.list-item').each((i, e) => {
         const priceElem = $('p[class="price"]', e);
         const price = $(priceElem).text();
         if (price.startsWith('\$') === false)
@@ -86,14 +84,14 @@ export class AppService {
         if (Number.isNaN(year) || year < 1900 || year > 2100)
           return true;
 
-        const urlFragment = $('a', titleStrElem).attr('href');
+        const urlFragment = $('a[href]', titleStrElem);
 
-        const image = $('a[class=thumbnail] img[class=lazyload]', e).attr('data-original');
+        const image = $('a[class=thumbnail] > img[class=lazyload]', e).attr('data-original');
 
         const mileage = $('ul[class="features"]', e).children().first().text();
         if (mileage.endsWith('km') === false)
           return true;
-        Logger.log(`Item: ${title}, ${yearStr}, ${price}, ${mileage}, ${urlFragment}, ${image}`);
+        Logger.log(`Item: ${title}, ${yearStr}, ${price.replace(/\D/g, '')}, ${mileage.replace(/\D/g, '')}, ${urlFragment}, ${image}`);
       });
 
       return JSON.stringify(res.data);
