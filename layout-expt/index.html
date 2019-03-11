@@ -2,29 +2,30 @@
 
 <head>
     <title>Responsive Layout Experiment</title>
-</head>
-<style type="text/css">
-    .search-panel {
-        background-color: aliceblue;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-gap: 1em;
-    }
-
-    @media only screen and (min-width: 450px) {
+    </head>
+    <style type="text/css">
         .search-panel {
             background-color: aliceblue;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             grid-gap: 1em;
         }
-    }
-
-    .single {
-        background-color: lavenderblush
-    }
-
-    .single * {
+    
+        @media only screen and (max-device-width : 414px) 
+        and (orientation : portrait) {
+            .search-panel {
+                background-color: aliceblue;
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-gap: 1em;
+            }
+        }
+    
+        .single {
+            background-color: lavenderblush
+        }
+    
+        .single * {
         width: 100%;
     }
 
