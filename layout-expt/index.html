@@ -11,7 +11,7 @@
             grid-gap: 1em;
         }
     
-        @media only screen and (max-device-width : 414px) 
+        @media  (max-device-width : 414px),  (max-width : 414px)
         and (orientation : portrait) {
             .search-panel {
                 background-color: aliceblue;
@@ -21,15 +21,15 @@
             }
         }
     
-        .single {
+        .single-panel {
             background-color: lavenderblush
         }
     
-        .single * {
+        .single-panel * {
         width: 100%;
     }
 
-    .pair {
+    .double-panel {
         background-color: lavenderblush;
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -38,25 +38,25 @@
             "select1 select2";
     }
 
-    .pair-header {
+    .double-panel-header {
         grid-area: title;
     }
 
 
-    .pair-1 {
+    .double-panel-left {
         grid-area: select1;
     }
 
-    .pair-1 * {
+    .double-panel-left * {
         width: 95%;
     }
 
-    .pair-2 {
+    .double-panel-right {
         grid-area: select2;
         text-align: right;
     }
 
-    .pair-2 * {
+    .double-panel-right * {
         width: 95%;
     }
 
@@ -67,73 +67,73 @@
 
 <body>
     <section class="search-panel">
-        <div class="single">
+        <div class="single-panel">
             <select name="make">
                 <option value="ford">Ford</option>
                 <option value="toyota">Toyota</option>
             </select>
         </div>
-        <div class="single">
+        <div class="single-panel">
             <select name="model">
                 <option value="corolla">corolla</option>
                 <option value="yaris">yaris</option>
             </select>
         </div>
-        <div class="single">
+        <div class="single-panel">
             <select name="region">
                 <option value="Auckland">Auckland</option>
                 <option value="Wellington">Wellington</option>
             </select>
         </div>
 
-        <div class="pair">
-            <div class="pair-header">
+        <div class="double-panel">
+            <div class="double-panel-header">
                 Price
             </div>
-            <div class="pair-1">
-                <select name="price-1">
+            <div class="double-panel-left">
+                <select name="price-left">
                     <option value="0">Low</option>
                     <option value="10000">$10000</option>
                 </select>
             </div>
-            <div class="pair-2">
-                <select name="price-2">
+            <div class="double-panel-right">
+                <select name="price-right">
                     <option value="10000">$10000</option>
                     <option value="0">High</option>
                 </select>
             </div>
         </div>
 
-        <div class="pair">
-            <div class="pair-header">
+        <div class="double-panel">
+            <div class="double-panel-header">
                 Year
             </div>
-            <div class="pair-1">
-                <select name="year-1">
+            <div class="double-panel-left">
+                <select name="year-left">
                     <option value="1980">Old</option>
                     <option value="2019">2010</option>
                 </select>
             </div>
-            <div class="pair-2">
-                <select name="year-2">
+            <div class="double-panel-right">
+                <select name="year-right">
                     <option value="2019">New</option>
                     <option value="2018">2018</option>
                 </select>
             </div>
         </div>
 
-        <div class="pair">
-            <div class="pair-header">
+        <div class="double-panel">
+            <div class="double-panel-header">
                 Mileage
             </div>
-            <div class="pair-1">
-                <select name="mileage-1">
+            <div class="double-panel-left">
+                <select name="mileage-left">
                     <option value="0">Low</option>
                     <option value="10000">10000</option>
                 </select>
             </div>
-            <div class="pair-2">
-                <select name="mileage-2">
+            <div class="double-panel-right">
+                <select name="mileage-right">
                     <option value="100000">High</option>
                     <option value="50000">50000</option>
                 </select>
