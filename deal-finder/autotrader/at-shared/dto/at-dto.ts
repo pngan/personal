@@ -21,4 +21,16 @@ export interface QueryParams {
     region: string;
     tranmissionStyle: string;
   }
+
+  
+  export interface IResultDto {
+    title: string;
+    year: number;
+    price: number;
+    mileage: number;
+    url: string;
+    image: string;
+    discount: number;
+  }
+  
   

@@ -332,7 +332,7 @@ export class HomeComponent implements OnInit, OnChanges {
     console.log(`%o`, queryValues);
     this.atService.searchVehicles(queryValues)
     .subscribe((response: string) => {
-      console.log(`Vehicles = ${response}`);
+      console.log(`Vehicles = %o`, response);
     });
   }
 }

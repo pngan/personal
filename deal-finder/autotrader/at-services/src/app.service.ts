@@ -3,14 +3,26 @@ import { map } from 'rxjs/operators';
 import { hostname } from 'os';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
-import { IFieldValues, IFieldValue, QueryParams } from '../../at-shared/dto/at-dto';
+import { IFieldValues, IFieldValue, QueryParams, IResultDto } from '../../at-shared/dto/at-dto';
 import { json } from 'body-parser';
 import * as cheerio from 'cheerio';
 
+class ResultDto implements IResultDto {
+  public title: string;
+  public year: number;
+  public price: number;
+  public mileage: number;
+  public url: string;
+  public image: string;
+  public discount: number;
+}
+
 @Injectable()
 export class AppService {
+
+  private results: IResultDto[] = new Array<IResultDto>();
   baseUrl = 'https://www.autotrader.co.nz/search-fields/listing';
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {}
 
   // Converting json to class
   // https://stackoverflow.com/questions/43894565/cast-object-to-interface-in-typescript
@@ -62,6 +74,7 @@ export class AppService {
       url += '-' + queryParams.region;
     url += `/price-${queryParams.priceLow}-${queryParams.priceHigh}/year-${queryParams.yearLow}-${queryParams.yearHigh}/kms-${queryParams.distLow}-${queryParams.distHigh}`;
     Logger.log(`Url = ${url}`);
+    this.results = new Array<IResultDto>();
 
     return await this.http.get(url,
     {
@@ -74,7 +87,7 @@ export class AppService {
       const item = [];
       $('.list-item').each((i, e) => {
         const priceElem = $('p[class="price"]', e);
-        const price = $(priceElem).text();
+        let price = $(priceElem).text();
         if (price.startsWith('\$') === false)
           return true;
         const titleStrElem = $('p[class="title"]', e);
@@ -84,17 +97,36 @@ export class AppService {
         if (Number.isNaN(year) || year < 1900 || year > 2100)
           return true;
 
-        const urlFragment = $('a[href]', titleStrElem);
+        const urlFragment = $('a[href]', titleStrElem).attr('href');
 
-        const image = $('a[class=thumbnail] > img[class=lazyload]', e).attr('data-original');
+        let image = $('a[class=thumbnail] > img[class=lazyload]', e).attr('data-original');
 
-        const mileage = $('ul[class="features"]', e).children().first().text();
+        let mileage = $('ul[class="features"]', e).children().first().text();
         if (mileage.endsWith('km') === false)
           return true;
-        Logger.log(`Item: ${title}, ${yearStr}, ${price.replace(/\D/g, '')}, ${mileage.replace(/\D/g, '')}, ${urlFragment}, ${image}`);
+
+        price =   price.replace(/\D/g, '');
+        mileage = mileage.replace(/\D/g, '');
+
+        const re = new RegExp('\/\/(.*)\:');
+        const matches = re.exec(image);
+        if (matches != null) {
+          image = matches[1];
+        }
+        Logger.log(`Item: ${title}, ${yearStr}, ${price}, ${mileage}, ${urlFragment}, ${image}`);
+
+        const result1 = new ResultDto();
+        result1.title = title;
+        result1.year = +yearStr;
+        result1.price = +price;
+        result1.mileage = +mileage;
+        result1.url = urlFragment;
+        result1.image = image;
+
+        this.results.push(result1);
       });
 
-      return JSON.stringify(res.data);
+      return JSON.stringify({results: this.results});
     }));
   }
   ping(): string {
