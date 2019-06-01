@@ -30,6 +30,7 @@ export interface QueryParams {
     mileage: number;
     url: string;
     image: string;
+    nominalPrice: number;
     discount: number;
   }
   

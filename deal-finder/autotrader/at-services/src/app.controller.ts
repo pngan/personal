@@ -1,11 +1,12 @@
 import { Get, Post, Controller, Param, Body, Logger } from '@nestjs/common';
 import { AppService } from './app.service';
 import { json } from 'body-parser';
-import { QueryParams } from '../../at-shared/dto/at-dto';
+import { QueryParams, IResultDto } from '../../at-shared/dto/at-dto';
+import { RegressionService } from './regression/regression.service';
 
 @Controller('at')
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService, private readonly regressionService: RegressionService) { }
 
   @Get('ping')
   ping(): string {
@@ -35,7 +36,16 @@ export class AppController {
   }
 
   @Post('vehicles')
-  getVehicles(@Body() queryParams: any): Promise<any>  {
-    return this.appService.vehicles(queryParams);
+  async getVehicles(@Body() queryParams: any): Promise<any>  {
+    let vehicles = await this.appService.vehicles(queryParams);
+    vehicles.subscribe(
+      vehics => {
+        const vs = vehics as IResultDto[];
+        const vechiclesWithDiscount = this.regressionService.CalculateDiscount(vs);
+        vechiclesWithDiscount.forEach(v => {
+          Logger.log(v);
+        });
+      });
+    return vehicles;
   }
 }

@@ -14,6 +14,7 @@ class ResultDto implements IResultDto {
   public mileage: number;
   public url: string;
   public image: string;
+  public nominalPrice: number;
   public discount: number;
 }
 
@@ -113,7 +114,7 @@ export class AppService {
         if (matches != null) {
           image = matches[1];
         }
-        Logger.log(`Item: ${title}, ${yearStr}, ${price}, ${mileage}, ${urlFragment}, ${image}`);
+        //Logger.log(`Item: ${title}, ${yearStr}, ${price}, ${mileage}, ${urlFragment}, ${image}`);
 
         const result1 = new ResultDto();
         result1.title = title;
@@ -126,7 +127,8 @@ export class AppService {
         this.results.push(result1);
       });
 
-      return JSON.stringify({results: this.results});
+      return this.results;
+      // return JSON.stringify({results: this.results});
     }));
   }
   ping(): string {

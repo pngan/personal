@@ -26,6 +26,7 @@
     "moment": "^2.22.2",
     "os": "^0.1.1",
     "reflect-metadata": "^0.1.12",
+    "regression": "^2.0.1",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3",
     "typescript": "^3.0.1"
