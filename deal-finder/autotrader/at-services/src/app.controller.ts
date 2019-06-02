@@ -36,16 +36,8 @@ export class AppController {
   }
 
   @Post('vehicles')
-  async getVehicles(@Body() queryParams: any): Promise<any>  {
-    let vehicles = await this.appService.vehicles(queryParams);
-    vehicles.subscribe(
-      vehics => {
-        const vs = vehics as IResultDto[];
-        const vechiclesWithDiscount = this.regressionService.CalculateDiscount(vs);
-        vechiclesWithDiscount.forEach(v => {
-          Logger.log(v);
-        });
-      });
-    return vehicles;
+  async getVehicles(@Body() queryParams: any): Promise<IResultDto[]>  {
+    const vehicles = await this.appService.vehicles(queryParams);
+    return this.regressionService.CalculateDiscount(vehicles);
   }
 }

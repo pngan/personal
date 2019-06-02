@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AtService } from '../at.service';
-import { IFieldValues, IFieldValue, QueryParams } from '../../../../at-shared/dto/at-dto';
+import { IFieldValues, IFieldValue, QueryParams, IResultDto } from '../../../../at-shared/dto/at-dto';
 
 interface IPriceItem {
   value: number;
@@ -331,7 +331,7 @@ export class HomeComponent implements OnInit, OnChanges {
     };
     console.log(`%o`, queryValues);
     this.atService.searchVehicles(queryValues)
-    .subscribe((response: string) => {
+    .subscribe((response: IResultDto[]) => {
       console.log(`Vehicles = %o`, response);
     });
   }

@@ -64,7 +64,7 @@ export class AppService {
   searchParams(): string {
     return 'searchParams';
   }
-  async vehicles(queryParams: QueryParams): Promise<any> {
+  async vehicles(queryParams: QueryParams): Promise<IResultDto[]> {
     Logger.log(`Search for ${JSON.stringify(queryParams)}`);
     let url = 'https://www.autotrader.co.nz/used-cars-for-sale/';
     if (queryParams.make !== undefined)
@@ -76,60 +76,56 @@ export class AppService {
     url += `/price-${queryParams.priceLow}-${queryParams.priceHigh}/year-${queryParams.yearLow}-${queryParams.yearHigh}/kms-${queryParams.distLow}-${queryParams.distHigh}`;
     Logger.log(`Url = ${url}`);
     this.results = new Array<IResultDto>();
+    const res = await this.http.get(url,
+      {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          'Cookie': 'selectedPageSize=500',
+        },
+      }).toPromise();
+    const $ = cheerio.load(res.data);
+    const item = [];
+    $('.list-item').each((i, e) => {
+      const priceElem = $('p[class="price"]', e);
+      let price = $(priceElem).text();
+      if (price.startsWith('\$') === false)
+        return true;
+      const titleStrElem = $('p[class="title"]', e);
+      const title = $(titleStrElem).text();
+      const yearStr = title.slice(0, 4);
+      const year = +yearStr;
+      if (Number.isNaN(year) || year < 1900 || year > 2100)
+        return true;
 
-    return await this.http.get(url,
-    {
-      headers: {
-        'X-Requested-With': 'XMLHttpRequest',
-        'Cookie': 'selectedPageSize=500',
-      },
-    }).pipe(map((res) => {
-      const $ = cheerio.load(res.data);
-      const item = [];
-      $('.list-item').each((i, e) => {
-        const priceElem = $('p[class="price"]', e);
-        let price = $(priceElem).text();
-        if (price.startsWith('\$') === false)
-          return true;
-        const titleStrElem = $('p[class="title"]', e);
-        const title = $(titleStrElem).text();
-        const yearStr = title.slice(0, 4);
-        const year = +yearStr;
-        if (Number.isNaN(year) || year < 1900 || year > 2100)
-          return true;
+      const urlFragment = $('a[href]', titleStrElem).attr('href');
 
-        const urlFragment = $('a[href]', titleStrElem).attr('href');
+      let image = $('a[class=thumbnail] > img[class=lazyload]', e).attr('data-original');
 
-        let image = $('a[class=thumbnail] > img[class=lazyload]', e).attr('data-original');
+      let mileage = $('ul[class="features"]', e).children().first().text();
+      if (mileage.endsWith('km') === false)
+        return true;
 
-        let mileage = $('ul[class="features"]', e).children().first().text();
-        if (mileage.endsWith('km') === false)
-          return true;
+      price = price.replace(/\D/g, '');
+      mileage = mileage.replace(/\D/g, '');
 
-        price =   price.replace(/\D/g, '');
-        mileage = mileage.replace(/\D/g, '');
+      const re = new RegExp('\/\/(.*)\:');
+      const matches = re.exec(image);
+      if (matches != null) {
+        image = matches[1];
+      }
+      //Logger.log(`Item: ${title}, ${yearStr}, ${price}, ${mileage}, ${urlFragment}, ${image}`);
 
-        const re = new RegExp('\/\/(.*)\:');
-        const matches = re.exec(image);
-        if (matches != null) {
-          image = matches[1];
-        }
-        //Logger.log(`Item: ${title}, ${yearStr}, ${price}, ${mileage}, ${urlFragment}, ${image}`);
+      const result1 = new ResultDto();
+      result1.title = title;
+      result1.year = +yearStr;
+      result1.price = +price;
+      result1.mileage = +mileage;
+      result1.url = urlFragment;
+      result1.image = image;
 
-        const result1 = new ResultDto();
-        result1.title = title;
-        result1.year = +yearStr;
-        result1.price = +price;
-        result1.mileage = +mileage;
-        result1.url = urlFragment;
-        result1.image = image;
-
-        this.results.push(result1);
-      });
-
-      return this.results;
-      // return JSON.stringify({results: this.results});
-    }));
+      this.results.push(result1);
+    });
+    return this.results;
   }
   ping(): string {
     return `${moment().format()}: ${hostname()}`;
