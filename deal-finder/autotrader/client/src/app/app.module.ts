@@ -6,11 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ResultsComponent } from './results/results.component';
+import { ResultItemComponent } from './result-item/result-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ResultsComponent,
+    ResultItemComponent
   ],
   imports: [
     BrowserModule,

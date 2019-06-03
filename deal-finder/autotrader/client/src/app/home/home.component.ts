@@ -59,6 +59,8 @@ export class HomeComponent implements OnInit, OnChanges {
   public distLow: number;
   public distHigh: number;
 
+  public searchResults: IResultDto[];
+
   constructor(private atService: AtService) {
     this.menuMakes = new Array<IFieldValue>();
     this.priceOptions = [
@@ -332,6 +334,7 @@ export class HomeComponent implements OnInit, OnChanges {
     console.log(`%o`, queryValues);
     this.atService.searchVehicles(queryValues)
     .subscribe((response: IResultDto[]) => {
+      this.searchResults = response.sort((v1, v2) => v2.discount - v1.discount);
       console.log(`Vehicles = %o`, response);
     });
   }

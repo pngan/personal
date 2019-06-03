@@ -16,7 +16,7 @@ export class RegressionService {
     vehicles.forEach(v => {
       v.nominalPrice = m * v.year + c;
       const diff = v.nominalPrice - v.price;
-      v.discount = diff * 100 / v.nominalPrice; // percentage discount
+      v.discount = diff / v.nominalPrice;
     });
 
     return vehicles;

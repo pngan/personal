@@ -16,8 +16,6 @@
         </select>
     </div>
 
-
-
     <div class="single-panel">
         <select class=" form-control"  *ngIf="menuModel"   (change)="setModel($event)" [(ngModel)]="currentModel">
             <option>
@@ -96,5 +94,8 @@
         </div>
     </div>
     <input type="button" value="Search" class="btn btn-primary searchButton" (click)="doSearch()">
+</div>
+<div class="results-panel">
+    <at-results [searchResults]="searchResults" ></at-results>
 </div>
 </div>
