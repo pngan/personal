@@ -1,0 +1,20 @@
+.result-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+        "area_result-image area_result-details";
+    color: white;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    grid-gap: 4px;
+    /* background-color: rgba(255, 255, 255, 0.1); */
+}
+
+.result-image {
+    grid-area: area_result-image;
+    justify-self: end;
+}
+.result-details {
+    grid-area: area_result-details;
+    padding-right: 4px;
+}

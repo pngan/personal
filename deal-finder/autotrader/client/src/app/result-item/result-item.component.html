@@ -4,9 +4,9 @@
   </div>
   <div class="result-details">
     <div class="result-title">{{result.title}}</div>
-    <div class="result-price">{{result.price}}</div>
+    <div class="result-price">{{result.price | currency:'NZD':'symbol-narrow':'4.0-0'}}</div>
     <div class="result-year">{{result.year}}</div>
-    <div class="result-mileage">{{result.mileage}}</div>
-    <div class="result-discount">{{result.discount | percent}}</div>
+    <div class="result-mileage">{{result.mileage}} km</div>
+    <div class="result-discount">{{absolutePercentage | percent}} {{direction}}</div>
   </div>
 </div>
