@@ -1,12 +1,14 @@
-<div class="result-item">
-  <div class="result-image">
+<a target="_blank" rel="noopener noreferrer" href="https://www.autotrader.co.nz/{{result.url}}">
+  <div class="result-item">
+    <div class="result-image">
       <img src="http://{{result.image}}" />
+    </div>
+    <div class="result-details">
+      <div class="result-title">{{result.title}}</div>
+      <div class="result-price">{{result.price | currency:'NZD':'symbol-narrow':'4.0-0'}}</div>
+      <div class="result-year">{{result.year}}</div>
+      <div class="result-mileage">{{result.mileage}} km</div>
+      <div class="result-discount">{{absolutePercentage | percent}} {{direction}}</div>
+    </div>
   </div>
-  <div class="result-details">
-    <div class="result-title">{{result.title}}</div>
-    <div class="result-price">{{result.price | currency:'NZD':'symbol-narrow':'4.0-0'}}</div>
-    <div class="result-year">{{result.year}}</div>
-    <div class="result-mileage">{{result.mileage}} km</div>
-    <div class="result-discount">{{absolutePercentage | percent}} {{direction}}</div>
-  </div>
-</div>
+</a>
