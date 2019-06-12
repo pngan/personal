@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class AtService {
 
-  atBaseUrl = 'http://deal-finder-service.herokuapp.com/at';
+  atBaseUrl = 'https://deal-finder-service.herokuapp.com/at';
   constructor(private http: HttpClient) { }
 
   getMakes():  Observable<IFieldValues[]> {
