@@ -15,3 +15,11 @@ This is an nestjs app. To run, you need node and nestjs cli install on your dev 
 
 ## This web service calls out to the python analysis web service
 ```https://github.com/pngan/analysis```
+
+## Deploying to Heroku
+
+Setting up nodejs
+https://www.joshmorony.com/deploying-a-production-nestjs-server-on-heroku/
+
+Git subtree
+https://stackoverflow.com/questions/7539382/how-can-i-deploy-push-only-a-subdirectory-of-my-git-repo-to-heroku
