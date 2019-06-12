@@ -18,6 +18,16 @@ This is an nestjs app. To run, you need node and nestjs cli install on your dev 
 
 ## Deploying to Heroku
 
+The nodejs was not located at root of git repository.
+
+
+cd <root of git repo>
+heroku buildpacks
+
+
+
+
+
 Setting up nodejs
 https://www.joshmorony.com/deploying-a-production-nestjs-server-on-heroku/
 
