@@ -163,3 +163,5 @@ Thumbs.db
 
 # Mock API
 /api/node_modules
+
+env/
