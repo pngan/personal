@@ -4,8 +4,9 @@ import csv
 import pandas as pd
 import sys
 import plotly.express as px
+import math
 
-df = pd.DataFrame(columns=('country', 'state', 'lat', 'long', 'day', 'cases', 'deaths', 'recovered'))
+df = pd.DataFrame(columns=('country', 'state', 'lat', 'long', 'day', 'cases', 'deaths', 'recovered', 'logcases'))
 
 if 1 == 2:
     data = {}
@@ -64,12 +65,16 @@ if 1 == 2:
             deaths = state.get('deaths', {})
             recovered = state.get('recovered', {})
             for date in confirmed_cases:
-                df_row = [country_name, state_name, state['lat'], state['long'], date, confirmed_cases[date], deaths.get(date, None), recovered.get(date, None)]
+                cases = float(confirmed_cases[date])
+                if (cases != 0):
+                    cases = math.log(cases)
+                df_row = [country_name, state_name, float(state['lat']), float(state['long']), 
+                            date, float(confirmed_cases[date]), float(deaths.get(date, 0)), float(recovered.get(date, 0)), cases]
                 df.loc[idx] = df_row
                 idx = idx + 1
-                break
                 
     df.to_pickle('geodata.pkl')
+    print(df)
 
 else:
 
@@ -77,16 +82,18 @@ else:
     print(df)
 
 
-fig = px.scatter_geo(df, 
-                      size="cases",
-                     projection="natural earth")
-fig.show()
 
-# fig = px.scatter_geo(df, lat="lat", lon="long",
-#                      hover_name="country", size="cases",
-#                      animation_frame="day",
-#                      projection="natural earth")
-# fig.show()
+
+#fig = px.scatter_geo(df, lat="lat", lon="long", size="cases", animation_frame="day", projection="natural earth")
+fig = px.scatter_geo(df, lat="lat", lon="long",
+                     hover_name="country", 
+                     hover_data=["state", "cases", "deaths", "recovered", "day"],
+                     size="logcases",
+                     animation_frame="day",
+                     projection="natural earth"
+                     )
+
+fig.write_html('geoplot.html', auto_open=True)
 
 # f = open("dict.json","w")
 # f.write( str(data) )
