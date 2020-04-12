@@ -6,7 +6,7 @@ import sys
 import plotly.express as px
 import math
 
-df = pd.DataFrame(columns=('country', 'state', 'lat', 'long', 'day', 'cases', 'deaths', 'recovered', 'logcases'))
+df = pd.DataFrame(columns=('country', 'state', 'lat', 'long', 'day', 'cases', 'deaths', 'recovered', 'logcases', 'mortality_rate'))
 
 if 1 == 2:
     data = {}
@@ -66,10 +66,15 @@ if 1 == 2:
             recovered = state.get('recovered', {})
             for date in confirmed_cases:
                 cases = float(confirmed_cases[date])
-                if (cases != 0):
-                    cases = math.log(cases)
+                cases = math.log(cases+1, 1.5)
+                confirmed_df = float(confirmed_cases[date])
+                deaths_df = float(deaths.get(date, 0))
+                if confirmed_cases[date] == '0':
+                    mortality_df = 0
+                else:
+                    mortality_df = deaths_df/confirmed_df*100
                 df_row = [country_name, state_name, float(state['lat']), float(state['long']), 
-                            date, float(confirmed_cases[date]), float(deaths.get(date, 0)), float(recovered.get(date, 0)), cases]
+                            date, confirmed_df, deaths_df, float(recovered.get(date, 0)), cases, mortality_df]
                 df.loc[idx] = df_row
                 idx = idx + 1
                 
@@ -87,10 +92,15 @@ else:
 #fig = px.scatter_geo(df, lat="lat", lon="long", size="cases", animation_frame="day", projection="natural earth")
 fig = px.scatter_geo(df, lat="lat", lon="long",
                      hover_name="country", 
-                     hover_data=["state", "cases", "deaths", "recovered", "day"],
+                     hover_data=["state", "cases", "deaths", "recovered", "day", "mortality_rate"],
                      size="logcases",
                      animation_frame="day",
                      projection="natural earth"
+                     
+                    #  
+                    # color='mortality_rate',
+                    # color_continuous_scale=px.colors.diverging.RdBu[::-1]
+                    #  range_color=[0, 15]
                      )
 
 fig.write_html('geoplot.html', auto_open=True)
