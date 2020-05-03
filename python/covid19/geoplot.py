@@ -66,7 +66,10 @@ if 1 == 1:
             recovered = state.get('recovered', {})
             for date in confirmed_cases:
                 cases = float(confirmed_cases[date])
-                cases = math.log(cases+1, 1.5)
+                if cases > 0.0:
+                    cases = math.log(cases+1, 1.5)
+                else:
+                    cases = 0.0
                 confirmed_df = float(confirmed_cases[date])
                 deaths_df = float(deaths.get(date, 0))
                 if confirmed_cases[date] == '0':
