@@ -1,9 +1,9 @@
-from http.server import HTTPServer, BaseHTTPRequestHandler
-import ssl
+import http.server
+import socketserver
 
-httpd = HTTPServer(('localhost', 4443),BaseHTTPRequestHandler)
+PORT = 8080
+Handler = http.server.SimpleHTTPRequestHandler
 
-httpd.socket = ssl.wrap_socket (httpd.socket,
-    keyfile="key.pem",
-    certfile="cert.pem", server_side=True)
-httpd.serve_forever()
+with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    print("serving at port", PORT)
+    httpd.serve_forever()

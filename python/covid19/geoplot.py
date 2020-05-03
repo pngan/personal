@@ -8,7 +8,7 @@ import math
 
 df = pd.DataFrame(columns=('country', 'state', 'lat', 'long', 'day', 'cases', 'deaths', 'recovered', 'logcases', 'mortality_rate'))
 
-if 1 == 2:
+if 1 == 1:
     data = {}
 
     def read_data(data, url, statistic) :
