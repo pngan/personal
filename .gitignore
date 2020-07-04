@@ -165,3 +165,7 @@ Thumbs.db
 /api/node_modules
 
 env/
+
+# python
+*.pyi
+
