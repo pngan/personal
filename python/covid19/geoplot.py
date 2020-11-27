@@ -30,8 +30,8 @@ def generate_geoplot():
                 if (state == None):
                     country[state_name] = {}
                     state = country.get(state_name)
-                state['lat'] = float(row[2])
-                state['long'] = float(row[3])
+                state['lat'] = float(row[2]) if row[2] else 0.0
+                state['long'] = float(row[3]) if row[3] else 0.0
 
                 datum = state.get(statistic)
                 if (datum == None):
