@@ -168,4 +168,6 @@ env/
 
 # python
 *.pyi
-
+*.pyc
+*.pkl
+geoplot.html
